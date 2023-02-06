@@ -5,7 +5,7 @@
 - Task 1
 Собрал сцену
 ![Alt text](Screenshots/Task1.png "Task 1")
--Task 2
+- Task 2
 Заменил текстуры
 ![Alt text](Screenshots/Task2.png "Task 2")
 - Task 3
