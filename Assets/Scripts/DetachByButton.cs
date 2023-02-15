@@ -14,7 +14,7 @@ public class DetachByButton : MonoBehaviour
     {
         if (Input.GetButtonDown(InputConstants.DetachButtonName))
         {
-            if (_attachment.IsAttached)
+            if (_attachment.Rope != null)
             {
                 _attachment.Detach();
             }

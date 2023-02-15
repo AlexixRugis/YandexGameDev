@@ -17,7 +17,7 @@ public class SwingBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_attachment.IsAttached)
+        if (_attachment.Rope != null)
         {
             ApplySwing();
         }
