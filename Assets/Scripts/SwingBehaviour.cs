@@ -35,19 +35,17 @@ public class SwingBehaviour : MonoBehaviour
 
     private Vector2 CalculateSwingForce()
     {
-        Vector2 toAttachmentDirection = (_attachment.Rope.AttachmentPoint - transform.position).normalized;
-        Vector3 perpendicularDirection = new Vector2(toAttachmentDirection.y, -toAttachmentDirection.x);
-
         float factor = 1f - Mathf.Clamp01(
             Mathf.Abs(transform.position.x - _attachment.Rope.AttachmentPoint.x) * 5f);
 
-        if (_rigidbody.velocity.x >= 0)
+        Vector2 toAttachmentDirection = (_attachment.Rope.AttachmentPoint - transform.position).normalized;
+        Vector3 forceDirection = new Vector2(toAttachmentDirection.y, -toAttachmentDirection.x);
+
+        if (_rigidbody.velocity.x < 0)
         {
-            return perpendicularDirection * _force * factor;
+            forceDirection = -forceDirection;
         }
-        else
-        {
-            return -perpendicularDirection * _force * factor;
-        }
+
+        return forceDirection * _force * factor;
     }
 }

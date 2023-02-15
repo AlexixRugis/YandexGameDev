@@ -20,12 +20,17 @@ public class RopeAttachment : MonoBehaviour
         
         if (collider.transform.TryGetComponent(out Rope newRope))
         {
-            if (newRope != _lastRope)
-            {
-                Rope = newRope;
-                _joint.connectedBody = newRope.Rigidbody;
-                _joint.enabled = true;
-            }
+            AttachTo(newRope);
+        }
+    }
+
+    public void AttachTo(Rope newRope)
+    {
+        if (newRope != _lastRope)
+        {
+            Rope = newRope;
+            _joint.connectedBody = newRope.Rigidbody;
+            _joint.enabled = true;
         }
     }
 
