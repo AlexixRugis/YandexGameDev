@@ -3,7 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(RopeAttachment))]
 public class SwingBehaviour : MonoBehaviour
 {
+    [Tooltip("The force applied to the object for acceleration using Rigidbody")]
+    [Min(0f)]
     [SerializeField] private float _force;
+    [Tooltip("The maximum speed of the object at the lowest point of the trajectory")]
+    [Min(0f)]
     [SerializeField] private float _maxSpeed;
 
     private Rigidbody2D _rigidbody;
