@@ -1,39 +1,40 @@
 using UnityEngine;
 
+[RequireComponent(typeof(HingeJoint2D))]
 public class RopeAttachment : MonoBehaviour
 {
     public Rope Rope { get; private set; }
-    public bool IsAttached => Rope;
 
     private Rope _lastRope = null;
 
+    private HingeJoint2D _joint;
+
+    private void Awake()
+    {
+        _joint = GetComponent<HingeJoint2D>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (IsAttached) return;
-
-        var rope = collider.transform.GetComponent<Rope>();
+        if (Rope != null) return;
         
-        if (rope && rope != _lastRope)
+        if (collider.transform.TryGetComponent(out Rope newRope))
         {
-            var joint = gameObject.AddComponent<HingeJoint2D>();
-            joint.autoConfigureConnectedAnchor = false;
-            joint.connectedBody = rope.Rigidbody;
-            joint.connectedAnchor = Vector2.zero;
-            Rope = rope;
+            if (newRope != _lastRope)
+            {
+                Rope = newRope;
+                _joint.connectedBody = newRope.Rigidbody;
+                _joint.enabled = true;
+            }
         }
     }
 
     public void Detach()
     {
-        if (!IsAttached) return; 
+        if (Rope == null) return;
 
-        var joint = GetComponent<HingeJoint2D>();
-        if (joint)
-        {
-            Destroy(joint);
-
-            _lastRope = Rope;
-            Rope = null;
-        }
+        _joint.enabled = false;
+        _lastRope = Rope;
+        Rope = null;
     }
 }
