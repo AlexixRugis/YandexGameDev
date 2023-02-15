@@ -3,11 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(HingeJoint2D))]
 public class RopeAttachment : MonoBehaviour
 {
+    /// <summary>
+    /// The rope to which the object is attached, null if the object is not attached to the rope
+    /// </summary>
     public Rope Rope { get; private set; }
 
-    private Rope _lastRope = null;
-
     private HingeJoint2D _joint;
+    private Rope _lastRope = null;
 
     private void Awake()
     {
@@ -24,9 +26,15 @@ public class RopeAttachment : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Attaches an object to a rope
+    /// 
+    /// Can only be used if the object is not attached to the rope
+    /// </summary>
+    /// <param name="newRope">The rope to attach the object to</param>
     public void AttachTo(Rope newRope)
     {
-        if (newRope != _lastRope)
+        if (Rope == null && newRope != _lastRope)
         {
             Rope = newRope;
             _joint.connectedBody = newRope.Rigidbody;
@@ -34,6 +42,12 @@ public class RopeAttachment : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Detaches an object from the rope
+    /// 
+    /// Can be used when the object is attached to the rope
+    /// </summary>
     public void Detach()
     {
         if (Rope == null) return;

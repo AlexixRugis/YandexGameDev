@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attachmentPoint: {fileID: 6706743774634844206}
+  _mass: 1
 --- !u!1 &6706743773294358012
 GameObject:
   m_ObjectHideFlags: 0
