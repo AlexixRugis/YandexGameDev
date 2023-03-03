@@ -1440,7 +1440,8 @@ MonoBehaviour:
   _defaultGunBulletTemplate: {fileID: -1156457070632799784, guid: 9ac0a761c39837c438fc2f5cbde37379, type: 3}
   _asteroidTemplate: {fileID: -5592899209094444788, guid: 7b512be35dd70a740b70ad3f11129f6b, type: 3}
   _asteroidPartTemplate: {fileID: 2496268463148620810, guid: f9673b8bf2b901049947fef6ed94e495, type: 3}
-  _nloTemplate: {fileID: -3177811691921934883, guid: 227e6133de9075a44aa0ad05e2399431, type: 3}
+  _nlo1Template: {fileID: -3177811691921934883, guid: 227e6133de9075a44aa0ad05e2399431, type: 3}
+  _nlo2Template: {fileID: -3177811691921934883, guid: fc0c676f615e0a64abd60f0d7ab5929c, type: 3}
 --- !u!114 &1581576390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1453,6 +1454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaba5bdf6bb05064bbf8b5719df5394a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _secondsPerIndex: 1
   _factory: {fileID: 1581576389}
   _init: {fileID: 1581576386}
 --- !u!1 &1724014138

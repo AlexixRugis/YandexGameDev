@@ -6,19 +6,29 @@ namespace Asteroids.Model
     public class Nlo : Enemy
     {
         private readonly float _speed;
-        private readonly Transformable _target;
+        private readonly ModelGroup _targets;
 
-        public Nlo(Transformable target, Vector2 position, float speed) : base(position, 0)
+        private Transformable _target;
+
+        public Nlo(ModelGroup targets, Vector2 position, float speed) : base(position, 0)
         {
-            _target = target;
+            _targets = targets;
             _speed = speed;
         }
 
         public override void Update(float deltaTime)
         {
-            Vector2 nextPosition = Vector2.MoveTowards(Position, _target.Position, _speed * deltaTime);
-            MoveTo(nextPosition);
-            LookAt(_target.Position);
+            if (_target == null || _target.Destroyed)
+            {
+                _target = _targets.GetNearestTo(this);
+            }
+            else
+            {
+                Debug.Log(_target.Destroyed);
+                Vector2 nextPosition = Vector2.MoveTowards(Position, _target.Position, _speed * deltaTime);
+                MoveTo(nextPosition);
+                LookAt(_target.Position);
+            }
         }
 
         private void LookAt(Vector2 point)

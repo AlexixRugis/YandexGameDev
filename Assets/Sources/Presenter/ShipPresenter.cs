@@ -5,6 +5,8 @@ public class ShipPresenter : Presenter
 {
     private Root _init;
 
+    public new Ship Model => base.Model as Ship;
+
     public void Init(Root init)
     {
         _init = init;
@@ -14,7 +16,7 @@ public class ShipPresenter : Presenter
     {
         if (collision.gameObject.CompareTag(Config.EnemyTag))
         {
-            (Model as Ship).TakeDamage();
+            Model.TakeDamage();
         }
     }
 }

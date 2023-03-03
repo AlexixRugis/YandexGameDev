@@ -15,9 +15,14 @@ public class Root : MonoBehaviour
     private LaserGun _laserGun;
     private LaserGunRollback _laserGunRollback;
 
+    private ModelGroup _enemyGroup1;
+    private ModelGroup _enemyGroup2;
+
     public Ship Ship => _shipModel;
     public LaserGun LaserGun => _laserGun;
     public LaserGunRollback LaserGunRollback => _laserGunRollback;
+    public ModelGroup EnemyGroup1 => _enemyGroup1;
+    public ModelGroup EnemyGroup2 => _enemyGroup2;
 
     private void Awake()
     {
@@ -32,6 +37,9 @@ public class Root : MonoBehaviour
 
         _shipPresenter.Init(_shipModel, _camera);
         _shipPresenter.Init(this);
+
+        _enemyGroup1 = new ModelGroup();
+        _enemyGroup2 = new ModelGroup();
 
         _laserGunRollback = new LaserGunRollback(_laserGun, Config.LaserCooldown);
     }

@@ -9,6 +9,6 @@
         public const float DefaultBulletSpeed = 0.6f;
 
         public const string EnemyTag = "Enemy";
-        public const string BulletsTag = "Bullets";
+        public const string BulletsTag = "Bullet";
     }
 }
