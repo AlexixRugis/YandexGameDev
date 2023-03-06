@@ -16,18 +16,4 @@ public class Root : MonoBehaviour
         _walletPresenter.Init(_wallet);
         _testPanelPresenter.Init(_wallet);
     }
-    private void OnEnable()
-    {
-        _wallet.CoinsAmountChanged += OnCoinsAmountChanged;
-    }
-
-    private void OnDisable()
-    {
-        _wallet.CoinsAmountChanged -= OnCoinsAmountChanged;    
-    }
-
-    private void OnCoinsAmountChanged()
-    {
-        PlayerPrefs.SetInt(Config.PlayerPrefsRecordName, _wallet.CoinsAmount);
-    }
 }
