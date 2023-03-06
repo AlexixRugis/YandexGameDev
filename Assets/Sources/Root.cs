@@ -1,19 +1,20 @@
 using Model;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class Root : MonoBehaviour
 {
-    private const string PlayerPrefsRecordName = "Coins";
-
     [SerializeField] private WalletPresenter _walletPresenter;
+    [SerializeField] private TestPanelPresenter _testPanelPresenter;
 
-    private Wallet _wallet;
+    private IWallet _wallet;
 
     private void Awake()
     {
-        _wallet = new Wallet(PlayerPrefs.GetInt(PlayerPrefsRecordName, 0));
+        _wallet = new PlayerPrefsWallet(Config.PlayerPrefsRecordName);
 
         _walletPresenter.Init(_wallet);
+        _testPanelPresenter.Init(_wallet);
     }
     private void OnEnable()
     {
@@ -27,6 +28,6 @@ public class Root : MonoBehaviour
 
     private void OnCoinsAmountChanged()
     {
-        PlayerPrefs.SetInt(PlayerPrefsRecordName, _wallet.CoinsAmount);
+        PlayerPrefs.SetInt(Config.PlayerPrefsRecordName, _wallet.CoinsAmount);
     }
 }

@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Model
 {
-    public class Wallet
+    public class Wallet : IWallet
     {
         public int CoinsAmount { get; private set; }
 
@@ -15,11 +13,9 @@ namespace Model
             CoinsAmount = coinsAmount;
         }
 
-        public void AddCoins(int amount)
+        public void AddCoin()
         {
-            if (amount < 0) throw new InvalidOperationException("Can't add negative amount of coins");
-
-            CoinsAmount += amount;
+            CoinsAmount++;
             CoinsAmountChanged?.Invoke();
         }
 

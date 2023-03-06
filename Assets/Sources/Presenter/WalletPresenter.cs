@@ -9,54 +9,25 @@ public class WalletPresenter : MonoBehaviour
     private const string AnimatorParameterName = "OnAmountChanged";
 
     [SerializeField] private TextMeshProUGUI _render;
-    [SerializeField] private Button _addButton;
-    [SerializeField] private Button _discardButton;
-    [SerializeField] private TMP_InputField _amountInput;
     [SerializeField] private Animator _animator;
 
-    private Wallet _model;
-
-    public void Init(Wallet model)
-    {
-        _model = model;
-
-        OnCoinsAmountChanged();
-    }
-
-    public void OnAddButtonClicked()
-    {
-        try
-        {
-            int amount = Convert.ToInt32(_amountInput.text);
-            _model.AddCoins(amount);
-        }
-        catch (FormatException) { }
-        catch (OverflowException) { }
-    }
-
-    public void OnDiscardButtonClicked()
-    {
-        try
-        {
-            int amount = Convert.ToInt32(_amountInput.text);
-            _model.TryDiscardCoins(amount);
-        }
-        catch (FormatException) { }
-        catch (OverflowException) { }
-    }
+    private IWallet _model;
 
     private void OnEnable()
     {
         _model.CoinsAmountChanged += OnCoinsAmountChanged;
-        _addButton.onClick.AddListener(OnAddButtonClicked);
-        _discardButton.onClick.AddListener(OnDiscardButtonClicked);
     }
 
     private void OnDisable()
     {
         _model.CoinsAmountChanged -= OnCoinsAmountChanged;
-        _addButton.onClick.RemoveListener(OnAddButtonClicked);
-        _discardButton.onClick.RemoveListener(OnDiscardButtonClicked);
+    }
+
+    public void Init(IWallet model)
+    {
+        _model = model;
+
+        OnCoinsAmountChanged();
     }
 
     private void OnCoinsAmountChanged()
