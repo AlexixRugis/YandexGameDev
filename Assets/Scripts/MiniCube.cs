@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
 public class MiniCube : MonoBehaviour
@@ -16,6 +17,8 @@ public class MiniCube : MonoBehaviour
     }
     private void OnMouseEnter()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
         _resources.CollectCoins(_coinsAmount, transform.position);
         Destroy(gameObject);
     }
