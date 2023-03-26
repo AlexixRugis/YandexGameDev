@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Cube
-  - MiniCube
+  - 
+  - 
   - 
   - 
   - 
@@ -40,4 +40,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2000979799
+    locked: 0
+  - name: OnBackground
+    uniqueID: 2299687631
+    locked: 0
+  - name: Main
+    uniqueID: 2204261495
+    locked: 0
+  - name: OnMain
+    uniqueID: 2176790257
+    locked: 0
+  - name: Foreground
+    uniqueID: 2552697859
     locked: 0
